@@ -1,0 +1,1 @@
+document.getElementById("app").textContent = "Velkommen til din budsjett-app!";
