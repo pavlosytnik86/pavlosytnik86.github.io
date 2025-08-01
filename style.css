@@ -1,16 +1,1 @@
-
-body {
-    font-family: sans-serif;
-    padding: 20px;
-    background: #f9f9f9;
-}
-header {
-    background: #eee;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+body { font-family: sans-serif; }
