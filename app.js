@@ -1,50 +1,21 @@
 
-const goldRate = 750; // kr per gram
+document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('expense-chart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Продукты', 'Аренда', 'Свет', 'Интернет'],
+            datasets: [{
+                label: 'Расходы',
+                data: [1000, 5000, 700, 300],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+            }]
+        }
+    });
 
-let state = {
-  bank: 0,
-  cash: 0,
-  assets: 0,
-  gold: 0
-};
-
-function updateDisplay() {
-  document.getElementById("bank").textContent = `${state.bank} kr`;
-  document.getElementById("cash").textContent = `${state.cash} kr`;
-  document.getElementById("assets").textContent = `${state.assets} kr`;
-  document.getElementById("gold").textContent = `${state.gold} g`;
-  document.getElementById("gold_value").textContent = `${state.gold * goldRate} kr`;
-
-  const total = state.bank + state.cash + state.assets + (state.gold * goldRate);
-  document.getElementById("total").textContent = `${total} kr`;
-}
-
-document.getElementById("start-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  state.bank = Number(document.getElementById("start-bank").value);
-  state.cash = Number(document.getElementById("start-cash").value);
-  state.assets = Number(document.getElementById("start-assets").value);
-  state.gold = Number(document.getElementById("start-gold").value);
-  updateDisplay();
+    const income = 8000;
+    const expense = 7000;
+    document.getElementById('total-income').textContent = income;
+    document.getElementById('total-expense').textContent = expense;
+    document.getElementById('balance').textContent = income - expense;
 });
-
-document.getElementById("income-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const type = document.getElementById("income-type").value;
-  const amount = Number(document.getElementById("income-amount").value);
-  if (type === "gold") {
-    state.gold += amount;
-  } else {
-    state[type] += amount;
-  }
-  updateDisplay();
-});
-
-document.getElementById("expense-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const amount = Number(document.getElementById("expense-amount").value);
-  state.cash -= amount;
-  updateDisplay();
-});
-
-updateDisplay();

@@ -1,71 +1,25 @@
+
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Budsjett</title>
-  <link rel="stylesheet" href="style.css"/>
-  <script defer src="app.js"></script>
+    <meta charset="UTF-8">
+    <title>Личный бюджет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Personlig Budsjett</h1>
-    <div id="balance-display">
-      Totalt: <span id="total">0 kr</span><br>
-      Bank: <span id="bank">0 kr</span> |
-      Kontant: <span id="cash">0 kr</span><br>
-      Aktiva: <span id="assets">0 kr</span><br>
-      Gull: <span id="gold">0 g</span> (<span id="gold_value">0 kr</span>)
-    </div>
-  </header>
-
-  <main>
-    <section>
-      <h2>Startbalanse</h2>
-      <form id="start-form">
-        <input type="number" placeholder="Bank (kr)" id="start-bank"/>
-        <input type="number" placeholder="Kontant (kr)" id="start-cash"/>
-        <input type="number" placeholder="Aktiva (kr)" id="start-assets"/>
-        <input type="number" placeholder="Gull (gram)" id="start-gold"/>
-        <button type="submit">Lagre</button>
-      </form>
-    </section>
-
-    <section>
-      <h2>Inntekt</h2>
-      <form id="income-form">
-        <select id="income-type">
-          <option value="bank">Bank</option>
-          <option value="cash">Kontant</option>
-          <option value="assets">Aktiva</option>
-          <option value="gold">Gull</option>
-        </select>
-        <select id="income-source">
-          <option value="lønn">Lønn</option>
-          <option value="salg">Salg</option>
-          <option value="annet">Annet</option>
-        </select>
-        <input type="number" placeholder="Beløp" id="income-amount" />
-        <button type="submit">Legg til</button>
-      </form>
-    </section>
-
-    <section>
-      <h2>Utgift</h2>
-      <form id="expense-form">
-        <select id="expense-category">
-          <option value="mat">Mat</option>
-          <option value="leie">Leie</option>
-          <option value="strøm">Strøm</option>
-          <option value="internett">Internett</option>
-          <option value="forutsett">Forutsett</option>
-          <option value="uforutsett">Uforutsett</option>
-          <option value="unødvendig">Unødvendig</option>
-        </select>
-        <input type="number" placeholder="Beløp" id="expense-amount" />
-        <button type="submit">Legg til</button>
-      </form>
-    </section>
-  </main>
+    <header>
+        <h1>Личный бюджет</h1>
+        <div id="summary">
+            <p>Доход: <span id="total-income">0</span> kr</p>
+            <p>Расход: <span id="total-expense">0</span> kr</p>
+            <p>Баланс: <span id="balance">0</span> kr</p>
+        </div>
+    </header>
+    <main>
+        <canvas id="expense-chart" width="400" height="400"></canvas>
+        <div id="transaction-list"></div>
+    </main>
 </body>
 </html>

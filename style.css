@@ -1,19 +1,16 @@
 
 body {
-  font-family: sans-serif;
-  background: #f0f0f0;
-  padding: 1rem;
+    font-family: sans-serif;
+    padding: 20px;
+    background: #f9f9f9;
 }
 header {
-  background: #222;
-  color: #fff;
-  padding: 1rem;
-  margin-bottom: 1rem;
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 20px;
 }
-form {
-  margin: 1rem 0;
-}
-input, select {
-  margin: 0.3rem;
-  padding: 0.5rem;
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
