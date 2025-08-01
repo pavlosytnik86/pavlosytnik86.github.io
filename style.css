@@ -1,6 +1,9 @@
 
-body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
-nav ul { list-style: none; display: flex; gap: 20px; padding: 0; }
-nav li { display: inline; }
-label { display: block; margin-top: 10px; }
-input { margin-left: 10px; }
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+}

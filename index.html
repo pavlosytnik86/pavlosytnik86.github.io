@@ -1,1 +1,21 @@
-<html><head><title>Бюджет</title></head><body><h1>Главная</h1><a href='add_income.html'>Добавить доход</a><br><a href='add_expense.html'>Добавить расход</a><br><a href='edit_balance.html'>Начальный баланс</a><br><a href='reports.html'>Отчеты и диаграммы</a></body></html>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Личный бюджет</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Редактировать баланс</h1>
+    <form id="balance-form">
+        <label>Безнал: <input type="number" id="bank" /></label><br/>
+        <label>Наличные: <input type="number" id="cash" /></label><br/>
+        <label>Активы: <input type="number" id="assets" /></label><br/>
+        <label>Золото (в граммах): <input type="number" id="gold" /></label><br/>
+        <button type="submit">Сохранить</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
