@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1976d2"/>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
-  <title>Budsjett App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css"/>
+  <title>Личный Бюджет</title>
 </head>
 <body>
-  <h1>Min Økonomi</h1>
-  <div id="app">Appen laster...</div>
+  <div class="app">
+    <h1>Личный бюджет</h1>
+    <input type="text" id="description" placeholder="Описание"/>
+    <input type="number" id="amount" placeholder="Сумма"/>
+    <button onclick="addEntry()">Добавить</button>
+    <ul id="entries"></ul>
+    <p>Итого: <span id="total">0</span> kr</p>
+  </div>
   <script src="main.js"></script>
 </body>
 </html>
