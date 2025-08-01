@@ -1,1 +1,2 @@
-// Dummy content for app.js
+// Примерный JS-файл
+console.log('Приложение загружено');
