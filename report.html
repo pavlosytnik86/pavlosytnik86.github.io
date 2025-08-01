@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Отчёты и графики</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  
+<nav class="navbar">
+  <a href="index.html">Главная</a>
+  <a href="income.html">Доход</a>
+  <a href="expense.html">Расход</a>
+  <a href="report.html">Отчёты</a>
+  <a href="balance.html">Баланс</a>
+</nav>
+
+  <div class="container">
+    
+<h2>Отчёты и диаграммы</h2>
+<label for="reportType">Тип отчёта:</label>
+<select id="reportType">
+  <option value="monthly">По месяцам</option>
+  <option value="yearly">По годам</option>
+</select><br><br>
+<canvas id="reportChart" width="400" height="300" style="background:white;border:1px solid #ccc;"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+function groupByMonth(data) {
+  const result = {};
+  data.forEach(entry => {
+    const date = new Date(entry.date);
+    const key = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2, '0')}`;
+    result[key] = (result[key] || 0) + entry.amount;
+  });
+  return result;
+}
+
+function groupByYear(data) {
+  const result = {};
+  data.forEach(entry => {
+    const date = new Date(entry.date);
+    const key = `${date.getFullYear()}`;
+    result[key] = (result[key] || 0) + entry.amount;
+  });
+  return result;
+}
+
+function renderChart(type) {
+  const data = loadFromStorage("expenses");
+  const grouped = type === "monthly" ? groupByMonth(data) : groupByYear(data);
+  const labels = Object.keys(grouped);
+  const values = Object.values(grouped);
+  const ctx = document.getElementById("reportChart").getContext("2d");
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{ label: "Расходы", data: values, backgroundColor: "#4e73df" }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}
+
+document.getElementById("reportType").addEventListener("change", function () {
+  renderChart(this.value);
+});
+
+renderChart("monthly");
+</script>
+
+  </div>
+</body>
+</html>

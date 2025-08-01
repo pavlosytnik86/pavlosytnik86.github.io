@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Редактировать баланс</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  
+<nav class="navbar">
+  <a href="index.html">Главная</a>
+  <a href="income.html">Доход</a>
+  <a href="expense.html">Расход</a>
+  <a href="report.html">Отчёты</a>
+  <a href="balance.html">Баланс</a>
+</nav>
+
+  <div class="container">
+    
+<h2>Редактировать баланс</h2>
+<form id="balanceForm">
+  <label>Безнал: <input type="number" id="bankBalance"></label><br><br>
+  <label>Наличные: <input type="number" id="cashBalance"></label><br><br>
+  <label>Активы: <input type="number" id="assetsBalance"></label><br><br>
+  <label>Золото (в граммах): <input type="number" id="goldBalance"></label><br><br>
+  <button type="submit">Сохранить</button>
+</form>
+<script>
+document.getElementById("balanceForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const balance = {
+    bank: parseFloat(document.getElementById("bankBalance").value) || 0,
+    cash: parseFloat(document.getElementById("cashBalance").value) || 0,
+    assets: parseFloat(document.getElementById("assetsBalance").value) || 0,
+    gold: parseFloat(document.getElementById("goldBalance").value) || 0,
+  };
+  saveToStorage("balance", balance);
+  alert("Баланс сохранён!");
+});
+</script>
+
+  </div>
+</body>
+</html>

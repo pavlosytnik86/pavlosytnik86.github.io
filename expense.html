@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Добавить расход</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  
+<nav class="navbar">
+  <a href="index.html">Главная</a>
+  <a href="income.html">Доход</a>
+  <a href="expense.html">Расход</a>
+  <a href="report.html">Отчёты</a>
+  <a href="balance.html">Баланс</a>
+</nav>
+
+  <div class="container">
+    
+<h2>Добавить расход</h2>
+<form id="expenseForm">
+  <label>Категория:
+    <select id="expenseCategory">
+      <option value="food">Продукты</option>
+      <option value="utilities_power">Коммуналка (свет)</option>
+      <option value="utilities_internet">Интернет и связь</option>
+      <option value="fuel">Топливо</option>
+      <option value="insurance">Страховки</option>
+      <option value="rent">Аренда</option>
+      <option value="unexpected">Непредвиденные расходы</option>
+      <option value="planned">Предвиденные покупки</option>
+      <option value="useless">Ненужное (например, сигареты)</option>
+    </select>
+  </label><br><br>
+  <label>Сумма: <input type="number" id="expenseAmount" required></label><br><br>
+  <button type="submit">Сохранить расход</button>
+</form>
+<script>
+document.getElementById("expenseForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const category = document.getElementById("expenseCategory").value;
+  const amount = parseFloat(document.getElementById("expenseAmount").value);
+  const entry = { category, amount, date: new Date().toISOString() };
+  const data = loadFromStorage("expenses");
+  data.push(entry);
+  saveToStorage("expenses", data);
+  alert("Расход добавлен!");
+  this.reset();
+});
+</script>
+
+  </div>
+</body>
+</html>

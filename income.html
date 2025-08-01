@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Добавить доход</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  
+<nav class="navbar">
+  <a href="index.html">Главная</a>
+  <a href="income.html">Доход</a>
+  <a href="expense.html">Расход</a>
+  <a href="report.html">Отчёты</a>
+  <a href="balance.html">Баланс</a>
+</nav>
+
+  <div class="container">
+    
+<h2>Добавить доход</h2>
+<form id="incomeForm">
+  <label>Тип счёта:
+    <select id="accountType">
+      <option value="bank">Безнал</option>
+      <option value="cash">Наличные</option>
+      <option value="assets">Активы</option>
+      <option value="gold">Золото (продажа)</option>
+    </select>
+  </label><br><br>
+  <label>Категория:
+    <select id="incomeCategory">
+      <option value="salary">Зарплата</option>
+      <option value="sale">Продажа</option>
+      <option value="other">Другое</option>
+    </select>
+  </label><br><br>
+  <label>Сумма: <input type="number" id="incomeAmount" required></label><br><br>
+  <button type="submit">Сохранить доход</button>
+</form>
+<script>
+document.getElementById("incomeForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const account = document.getElementById("accountType").value;
+  const category = document.getElementById("incomeCategory").value;
+  const amount = parseFloat(document.getElementById("incomeAmount").value);
+  const entry = { account, category, amount, date: new Date().toISOString() };
+  const data = loadFromStorage("incomes");
+  data.push(entry);
+  saveToStorage("incomes", data);
+  alert("Доход добавлен!");
+  this.reset();
+});
+</script>
+
+  </div>
+</body>
+</html>
