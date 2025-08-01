@@ -1,46 +1,44 @@
 
-let currentLang = 'ru';
-let goldPrice = 750;
-
-const langStrings = {
-    ru: {
-        title: "Личный бюджет",
-        income: "Доход",
-        expense: "Расход",
-        balance: "Баланс",
-        updateGold: "Обновить цену золота",
-        goldPrice: "Цена золота"
-    },
-    en: {
-        title: "Personal Budget",
-        income: "Income",
-        expense: "Expense",
-        balance: "Balance",
-        updateGold: "Update Gold Price",
-        goldPrice: "Gold Price"
-    },
-    no: {
-        title: "Personlig budsjett",
-        income: "Inntekt",
-        expense: "Utgift",
-        balance: "Balanse",
-        updateGold: "Oppdater gullpris",
-        goldPrice: "Gullpris"
-    }
-};
-
-function setLanguage(lang) {
-    currentLang = lang;
-    document.getElementById("title").innerText = langStrings[lang].title;
-    document.getElementById("income-label").childNodes[0].nodeValue = langStrings[lang].income + ": ";
-    document.getElementById("expense-label").childNodes[0].nodeValue = langStrings[lang].expense + ": ";
-    document.getElementById("balance-label").childNodes[0].nodeValue = langStrings[lang].balance + ": ";
-    document.querySelector("button").innerText = langStrings[lang].updateGold;
-    document.querySelector("#gold-info").childNodes[0].nodeValue = langStrings[lang].goldPrice + ": ";
+function initApp() {
+  updateBalanceDisplay();
 }
 
-function updateGoldPrice() {
-    // Эмуляция обновления курса золота
-    goldPrice = Math.floor(700 + Math.random() * 100);
-    document.getElementById("gold-price").innerText = goldPrice;
+function showMain() {
+  document.getElementById("mainView").style.display = "block";
+  document.getElementById("editBalanceForm").style.display = "none";
+}
+
+function showEditBalance() {
+  document.getElementById("editBalanceForm").style.display = "block";
+  document.getElementById("mainView").style.display = "none";
+}
+
+function saveEditedBalance() {
+  const bank = parseFloat(document.getElementById("editBank").value) || 0;
+  const cash = parseFloat(document.getElementById("editCash").value) || 0;
+  const assets = parseFloat(document.getElementById("editAssets").value) || 0;
+  const goldGrams = parseFloat(document.getElementById("editGoldGrams").value) || 0;
+
+  localStorage.setItem("startBank", bank);
+  localStorage.setItem("startCash", cash);
+  localStorage.setItem("startAssets", assets);
+  localStorage.setItem("startGoldGrams", goldGrams);
+
+  alert("Баланс обновлён.");
+  location.reload();
+}
+
+function updateBalanceDisplay() {
+  const bank = parseFloat(localStorage.getItem("startBank") || 0);
+  const cash = parseFloat(localStorage.getItem("startCash") || 0);
+  const assets = parseFloat(localStorage.getItem("startAssets") || 0);
+  const goldGrams = parseFloat(localStorage.getItem("startGoldGrams") || 0);
+  const goldPrice = parseFloat(localStorage.getItem("goldPrice") || 730) || 0;
+
+  const goldValue = goldGrams * goldPrice;
+  const totalBalance = bank + cash + assets + goldValue;
+
+  document.getElementById("balanceSummary").innerHTML =
+    `Общий баланс: ${totalBalance.toFixed(2)} kr<br>
+     💳 Безнал: ${bank.toFixed(2)} kr | 💵 Нал: ${cash.toFixed(2)} kr | 🏠 Активы: ${assets.toFixed(2)} kr | 🥇 Золото: ${goldGrams.toFixed(2)} г / ${(goldValue).toFixed(2)} kr`;
 }

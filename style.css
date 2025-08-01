@@ -1,12 +1,6 @@
 
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #f0f2f5;
-}
-h1 {
-    color: #333;
-}
-#language-selector button {
-    margin-right: 10px;
-}
+body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+nav ul { list-style: none; display: flex; gap: 20px; padding: 0; }
+nav li { display: inline; }
+label { display: block; margin-top: 10px; }
+input { margin-left: 10px; }
