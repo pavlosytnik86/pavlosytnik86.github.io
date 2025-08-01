@@ -1,1 +1,12 @@
-body { font-family: sans-serif; }
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f0f2f5;
+}
+h1 {
+    color: #333;
+}
+#language-selector button {
+    margin-right: 10px;
+}

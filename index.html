@@ -1,1 +1,28 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Budget App</title></head><body><h1>Добро пожаловать</h1></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Личный бюджет</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div id="language-selector">
+        <button onclick="setLanguage('ru')">Русский</button>
+        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('no')">Norsk</button>
+    </div>
+    <h1 id="title">Личный бюджет</h1>
+    <div>
+        <button onclick="updateGoldPrice()">Обновить цену золота</button>
+        <p id="gold-info">Цена золота: <span id="gold-price">-</span> NOK/грамм</p>
+    </div>
+    <div id="summary">
+        <p id="income-label">Доход: <span id="income">0</span> NOK</p>
+        <p id="expense-label">Расход: <span id="expense">0</span> NOK</p>
+        <p id="balance-label">Баланс: <span id="balance">0</span> NOK</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
